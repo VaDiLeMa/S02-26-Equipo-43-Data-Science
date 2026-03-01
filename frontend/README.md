@@ -1,73 +1,253 @@
-# React + TypeScript + Vite
+</> Markdown
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+DATAMARK Frontend
 
-Currently, two official plugins are available:
+Aplicación cliente de DATAMARK, construida bajo arquitectura SPA moderna, diseñada para análisis interactivo de datasets, visualización estadística avanzada y consumo eficiente de Apis RESTful.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Propósito del Frontend
 
-## React Compiler
+El Frontend es responsable de:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Orquestación de flujo de datos hacia el Backend
+- Gestión del estado global de la aplicación
+- Renderizado de dashboards dinámicos
+- Visualización estadística interactiva
+- Gestión de autenticación
+- Control de permisos de usuario
+- Manejo de errores distribuido
+- Optimización de performance y caching
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+ ARQUITECTURA DEL SISTEMA
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+ Estilo Arquitectónico:
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- SPA (Single Page Application)
+- Arquitectura basada en componentes
+- Separación por capas
+- Patrón Container / Presentational
+- Principios SOLID aplicados a componentes
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+ Estructura de Carpetas
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+frontend/
+│
+├── src/
+│ ├── core/ # Configuración global
+│ │ ├── api/
+│ │ ├── constants/
+│ │ ├── routes/
+│ │ └── config/
+│ │
+│ ├── modules/ # Módulos desacoplados por dominio
+│ │ ├── auth/
+│ │ ├── dashboard/
+│ │ ├── datasets/
+│ │ └── statistics/
+│ │
+│ ├── components/ # Componentes reutilizables
+│ ├── hooks/ # Custom Hooks
+│ ├── context/ # Context Providers
+│ ├── store/ # Gestión de estado global
+│ ├── services/ # Servicios HTTP
+│ ├── utils/ # Funciones puras
+│ ├── layouts/
+│ └── assets/
+│
+├── public/
+├── tests/
+├── .env
+├── vite.config.ts / next.config.js
+└── README.md
+
+
+</> Código
+---
+Stack Tecnológico
+
+Framework Principal
+React 18+ / Next.js 14+
+
+Manejo de Estado
+Redux Toolkit / Zustand / Context API
+
+Networking
+- Axios (interceptores)
+- Fetch API (opcional)
+
+Visualización de Datos
+ Recharts / Chart.js / D3.js
+
+ Estilos
+- TailwindCSS
+ CSS Modules / Styled Components
+
+ Tipado
+ TypeScript (estrict mode activado)
+
+
+
+ Autenticación y Seguridad
+
+Implementación basada en:
+
+- JWT (Access + Refresh Token)
+- Interceptores de Axios
+- Almacenamiento seguro (HttpOnly cookies recomendado)
+- Protección de rutas privadas
+- Role-based access control (RBAC)
+
+Ejemplo de protección de ruta:
+
+```ts
+<Route
+  path="/dashboard"
+  element={
+    <PrivateRoute roles={["admin", "analyst"]}>
+      <Dashboard />
+    </PrivateRoute>
+  }
+/>
+
+
+
+
+</>
+
+
+Gestión de API
+Configuración Base
+</>Codigo
+VITE_API_URL=http://localhost:8000/api
+
+</>
+
+
+Servicio HTTP Centralizado
+</>Codigo
+src/core/api/axiosInstance.ts
+
+</>
+
+Configuración incluye:
+•	Base URL
+•	Interceptores de request
+•	Interceptores de response
+•	Refresh token automático
+•	Manejo global de errores
+•	Retry automático (opcional)
+
+Motor de Visualización
+El frontend renderiza métricas provenientes del backend:
+•	Media
+•	Mediana
+•	Moda
+•	Distribuciones categóricas
+•	Series temporales
+•	KPIs comparativos
+•	Segmentaciones dinámicas
+
+Estrategia:
+•	Lazy loading de módulos
+•	Memoización con useMemo
+•	Virtualización de tablas
+•	Renderizado condicional optimizado
+
+
+
+Flujo de Datos Interno
+1.	Usuario carga dataset
+2.	Se envía request a backend
+3.	Backend procesa estadísticas
+4.	Store actualiza estado global
+5.	Dashboard se re-renderiza
+6.	Usuario aplica filtros
+7.	Se recalculan métricas dinámicamente
+
+Modularización por Dominio
+Cada módulo contiene:
+</>Codigo
+dashboard/
+│── components/
+│── hooks/
+│── services/
+│── types.ts
+│── index.ts
+</>
+
+Esto permite:
+•	Escalabilidad horizontal
+•	Bajo acoplamiento
+•	Alta cohesión
+•	Fácil testing
+
+
+
+
+Testing
+•	Jest
+•	React Testing Library
+•	Testing de hooks personalizados
+•	Testing de servicios HTTP
+•	Mocking de APIs
+
+Optimización y Performance
+
+Implementaciones incluidas:
+•	Code splitting                 
+•	Lazy loading
+•	Suspense
+•	Tree shaking
+•	Optimización de bundle
+•	Compresión Gzip/Brotli (servidor)
+
+Scripts Disponibles
+
+</>Bash
+
+npm run dev          # Desarrollo
+npm run build        # Build producción
+npm run preview      # Vista previa producción
+npm run lint         # Linter
+npm run format       # Prettier
+npm run test         # Testing
+
+</>
+
+
+
+Estrategia de Escalabilidad
+
+El frontend está preparado para:
+•	Microfrontends
+•	SSR (si usa Next.js)
+•	Edge rendering
+•	Integración con CDN
+•	Deploy automatizado (CI/CD)
+•	Feature toggles
+
+ Principios de Ingeniería Aplicados
+•	Clean Code
+•	SOLID
+•	Separation of Concerns
+•	DRY
+•	Atomic Design (componentes)
+•	Arquitectura orientada a dominio
+
+Estrategia de Despliegue
+Recomendado:
+•	Vercel (Next.js)
+•	AWS S3 + CloudFront
+•	Nginx como reverse proxy
+•	Dockerización
+
+Roadmap Técnico
+•	 Dark Mode
+•	 Filtros avanzados
+•	 Exportación PDF/Excel
+•	 Control de sesiones
+•	 Persistencia offline
+•	 WebSocket para tiempo real
+
