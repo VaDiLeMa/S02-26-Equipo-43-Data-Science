@@ -6,6 +6,7 @@ https://datamark-app.vercel.app
 🔗 **API Backend (Producción):**  
 https://datamark-api.onrender.com
 
+---
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Backend](https://img.shields.io/badge/backend-Node.js_+_Express-green)
@@ -13,26 +14,6 @@ https://datamark-api.onrender.com
 ![ORM](https://img.shields.io/badge/ORM-Prisma-black)
 ![Frontend](https://img.shields.io/badge/frontend-React_+_Vite-purple)
 ![Container](https://img.shields.io/badge/docker-enabled-blue)
-
----
-
-## 📌 Índice
-
-- [📙 Descripción del Proyecto](#-descripción-del-proyecto)
-- [🌳 Problemática](#-problemática)
-- [🎯 Objetivo del MVP](#-objetivo-del-mvp)
-- [📋 Alcance Funcional](#-alcance-funcional)
-- [🏗️ Arquitectura General](#️-arquitectura-general)
-- [🧱 Arquitectura de Integración](#-arquitectura-de-integración)
-- [🗄️ Modelo de Datos](#️-modelo-de-datos-erd-simplificado)
-- [🔌 Contrato de API](#-contrato-de-api)
-- [📊 Dashboard & KPIs](#-dashboard--kpis)
-- [🛡️ Manejo de Errores](#️-manejo-de-errores)
-- [🧪 Pruebas Realizadas](#-pruebas-realizadas)
-- [🚀 Cómo Levantar el Entorno](#-cómo-levantar-el-entorno)
-- [📂 Repositorio y Diagramas](#-repositorio-y-diagramas)
-- [👨‍💻 Equipo](#-equipo)
-- [📜 Licencia](#-licencia)
 
 ---
 
@@ -242,10 +223,7 @@ npm run dev
 
 ---
 
-## 📂 Repositorio y Diagramas
-
-Repositorio:  
-https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science.git  
+## 📂  Diagramas
 
 Arquitectura:  
 https://github.com/No-Country-simulation/S02-26-Equipo-43-Data-Science/blob/main/docs/architecture.mmd  
